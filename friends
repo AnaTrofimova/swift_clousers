@@ -1,0 +1,58 @@
+
+var friendNames: [String] = []
+var sortedFriends: [Int: [String]] = [:]
+var friendsDictionary: [Int: String] = [:]
+
+func addFriends(names: String...) {
+    friendNames += names
+}
+
+func sortFriends() {
+    sortedFriends.removeAll()
+    friendsDictionary.removeAll()
+    
+    for name in friendNames {
+        let count = name.count
+        if sortedFriends[count] == nil {
+            sortedFriends[count] = [name]
+        } else {
+            sortedFriends[count]?.append(name)
+        }
+        
+        if friendsDictionary[count] == nil {
+            friendsDictionary[count] = name
+        } else {
+            // Если в словаре уже есть друг с таким количеством символов,
+            // то добавляем его имя к уже существующему
+            friendsDictionary[count]! += ", \(name)"
+        }
+    }
+    
+    for (key, value) in sortedFriends {
+        sortedFriends[key] = value.sorted()
+    }
+}
+
+func printFriendByKey(key: Int) {
+    if let names = sortedFriends[key] {
+        print("Друзья с \(key) буквами в имени:")
+        for name in names {
+            print(name)
+        }
+    } else {
+        print("Нет друзей с \(key) буквами в имени.")
+    }
+}
+
+
+addFriends(names: "Ирина", "Катерина", "Иван", "Елена", "Николай")
+
+sortFriends()
+
+print("Словарь с количеством букв и соответствующими именами:")
+for (key, value) in friendsDictionary.sorted(by: { $0.key < $1.key }) {
+    print("\(key) букв: \(value)")
+}
+
+printFriendByKey(key: 5)
+printFriendByKey(key: 6)
