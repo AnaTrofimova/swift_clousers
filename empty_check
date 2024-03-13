@@ -1,0 +1,18 @@
+func checkAndPrintArrays(stringArray: inout [String], numericArray: inout [Int]) {
+    if stringArray.isEmpty {
+        stringArray.append("Added_random")
+    }
+    
+    if numericArray.isEmpty {
+        numericArray.append(255)
+    }
+    
+    print("Строковый массив: \(stringArray)")
+    print("Числовой массив: \(numericArray)")
+}
+
+// Пример использования функции
+var strings: [String] = []
+var numbers: [Int] = []
+
+checkAndPrintArrays(stringArray: &strings, numericArray: &numbers)
