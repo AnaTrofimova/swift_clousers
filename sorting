@@ -1,0 +1,11 @@
+
+var numbers = [5, 2, 9, 1, 7]
+numbers.sort { $0 < $1 }
+
+print("Сортировка по возрастанию:")
+print(numbers)
+
+numbers.sort { $0 > $1 }
+
+print("\nСортировка по убыванию:")
+print(numbers)
